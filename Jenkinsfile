@@ -25,7 +25,7 @@ pipeline {
             sh '''
                 curl -X POST -H "Content-type: application/json" \
                 --data '{"text":"✅ *Build Successful!* 🚀\\n*Job:* jenkins-pipeline-demo #${BUILD_NUMBER}\\n🔗 <${BUILD_URL}|View Build>"}' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
             '''
         }
         failure {
@@ -33,7 +33,7 @@ pipeline {
             sh '''
                 curl -X POST -H "Content-type: application/json" \
                 --data '{"text":"❌ *Build Failed!* 💥\\n*Job:* jenkins-pipeline-demo #${BUILD_NUMBER}\\n🔗 <${BUILD_URL}|View Build>"}' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
             '''
         }
     }
