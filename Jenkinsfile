@@ -14,25 +14,27 @@ pipeline {
             }
         }
 
-        stage('Deploy with Docker') {
+        stage('Deploy') {
             steps {
-                echo '🐳 Deploying Docker container...'
-                sh '''
-                    docker build -t myapp:latest .
-                    docker stop myapp || true
-                    docker rm myapp || true
-                    docker run -d --name myapp -p 80:80 myapp:latest
-                '''
+                echo '🚀 Deploying...'
             }
         }
     }
 
     post {
         success {
-            slackSend channel: '#build-notifications', message: "✅ Build Passed: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+            sh '''
+            curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"✅ *Build Successful!*"}' \
+            https://hooks.slack.com/services/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
+            '''
         }
         failure {
-            slackSend channel: '#build-notifications', message: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+            sh '''
+            curl -X POST -H 'Content-type: application/json' \
+            --data '{"text":"❌ *Build Failed!*"}' \
+            https://hooks.slack.com/services/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
+            '''
         }
     }
 }
