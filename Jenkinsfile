@@ -32,7 +32,7 @@ pipeline {
             sh """
                 curl -X POST -H 'Content-type: application/json' \
                 --data '{"text":"✅ *Build Successful!* 🚀\\n*Job:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\\n🔗 <${env.BUILD_URL}|View Build>"}' \
-                "${env.https://hooks.slack.com/services/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}"
+                "${https://hooks.slack.com/services/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}"
             """
         }
 
@@ -41,7 +41,7 @@ pipeline {
             sh """
                 curl -X POST -H 'Content-type: application/json' \
                 --data '{"text":"❌ *Build Failed!* 😞\\n*Job:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\\n🔗 <${env.BUILD_URL}|View Build>"}' \
-                "${env.https://hooks.slack.com/services/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}"
+                "${https://hooks.slack.com/services/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}"
             """
         }
     }
