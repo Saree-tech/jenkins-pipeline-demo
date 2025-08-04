@@ -25,7 +25,7 @@ pipeline {
             sh """
                 curl -X POST -H "Content-type: application/json" \
                 --data '{\"text\":\"✅ *Build Successful!* 🚀\\n*Job:* jenkins-pipeline-demo #${BUILD_NUMBER}\\n🔗 <${BUILD_URL}|View Build>\"}' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
             """
         }
     }
