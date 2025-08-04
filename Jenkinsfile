@@ -20,13 +20,15 @@ pipeline {
     }
 
     post {
-        success {
-            echo '🎉 Build Succeeded! Sending Slack notification...'
-            sh '''
-                curl -X POST -H "Content-type: application/json" \
-                --data "{\\"text\\": \\"✅ *Build Successful!* 🚀\\\\n*Job:* jenkins-pipeline-demo #${BUILD_NUMBER}\\\\n🔗 <${BUILD_URL}|View Build>\\"}" \
-                https://hooks.slack.com/services/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
-            '''
-        }
+    success {
+        echo '🎉 Build Succeeded! Sending Slack notification with bot...'
+        sh '''
+        curl -X POST https://slack.com/api/chat.postMessage \
+        -H "Authorization: Bearer xoxb-9296116316884-9297163632677-NFlMw2sYV68NWFcBGUe2EEQx" \
+        -H "Content-type: application/json" \
+        --data '{"channel":"C0987U64147","text":":white_check_mark: Build Success - ${JOB_NAME} #${BUILD_NUMBER}"}'
+        '''
     }
+}
+
 }
